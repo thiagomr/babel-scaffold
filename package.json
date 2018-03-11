@@ -1,0 +1,29 @@
+{
+  "name": "babel-scaffold",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --forceExit",
+    "start": "babel-node index.js",
+    "daemon": "nodemon index.js --exec babel-node"
+  },
+  "keywords": [
+    "babel",
+    "nodejs"
+  ],
+  "author": "Thiago Moraes",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-root-import": "^5.1.0",
+    "babel-preset-env": "^1.6.1",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.1.1",
+    "lodash": "^4.17.4",
+    "moment-timezone": "^0.5.14",
+    "mongoose": "^5.0.1",
+    "restify": "^4.3.1",
+    "winston": "^2.3.1"
+  }
+}

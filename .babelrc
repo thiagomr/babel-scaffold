@@ -1,0 +1,13 @@
+{
+    "presets": [
+        "env"
+    ],
+    "plugins": [
+        [
+            "babel-plugin-root-import",
+            {
+                "rootPathSuffix": "app"
+            }
+        ]
+    ]
+}
