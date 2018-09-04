@@ -1,48 +1,50 @@
 #!/bin/bash
+APPNAME="babel-scaffold"
 echo $1 $2
-export $(egrep -v '^#' .env.deploy | xargs)
 
 run() {
     echo "docker run -it \
         $cond \
-        --name=$appname \
-        -p $port:$port \
+        --name=$APPNAME \
+        -p $PORT:$PORT \
         -d \
-        --restart=unless-stopped $appname"
+        --restart=unless-stopped $APPNAME"
 }
 
 if [ $1 == "local" ]
   then
 
     cond="--net='host'"
+
+    export $(egrep -v '^#' .env.dev | xargs)
     cp .env.dev .env
 
     if [ $2 == "deploy" ]
       then
-        docker build -t $appname .
-        docker stop $appname
-        docker rm $appname
+        docker build -t $APPNAME .
+        docker stop $APPNAME
+        docker rm $APPNAME
         eval $(run)
     fi
 
     if [ $2 == "stop" ]
       then
-        docker stop $appname
+        docker stop $APPNAME
     fi
 
     if [ $2 == "exec" ]
       then
-        docker exec -it $appname $3
+        docker exec -it $APPNAME $3
     fi
 
     if [ $2 == "start" ]
       then
-        docker start $appname
+        docker start $APPNAME
     fi
 
     if [ $2 == "logs" ]
       then
-        docker logs -f $appname
+        docker logs -f $APPNAME
     fi
 fi
 
@@ -57,34 +59,36 @@ else
   exit
 fi
 
+export $(egrep -v '^#' $env | xargs)
 
 if [ $2 == "deploy" ]
   then
-    ssh -tt $host "mkdir $appname && cd $appname && sudo chmod 777 * -R"
-    rsync --progress --exclude-from '.deployignore' -avz -e "ssh" . $host:$appname
-    ssh -tt $host "cd $appname && cp $env .env"
-    ssh -tt $host "cd $appname && docker build -t $appname ."
-    ssh -tt $host "cd $appname && docker stop $appname"
-    ssh -tt $host "cd $appname && docker rm $appname"
-    ssh -tt $host "cd $appname && $(run)"
+    ssh -tt $HOST "mkdir $APPNAME && cd $APPNAME && sudo chmod 777 * -R"
+    rsync --progress --exclude-from '.deployignore' -avz -e "ssh" . $HOST:$APPNAME
+    ssh -tt $HOST "cd $APPNAME && cp $env .env"
+    ssh -tt $HOST "cd $APPNAME && docker build -t $APPNAME ."
+    ssh -tt $HOST "cd $APPNAME && docker stop $APPNAME"
+    ssh -tt $HOST "cd $APPNAME && docker rm $APPNAME"
+    ssh -tt $HOST "cd $APPNAME && $(run)"
+    ssh -tt $HOST "docker logs -f $APPNAME"
 fi
 
 if [ $2 == "stop" ]
   then
-    ssh -tt $host "docker stop $appname"
+    ssh -tt $HOST "docker stop $APPNAME"
 fi
 
 if [ $2 == "exec" ]
   then
-    ssh -tt $host "docker exec -it $appname $3"
+    ssh -tt $HOST "docker exec -it $APPNAME $3"
 fi
 
 if [ $2 == "start" ]
   then
-    ssh -tt $host "cd $appname && docker start $appname"
+    ssh -tt $HOST "cd $APPNAME && docker start $APPNAME"
 fi
 
 if [ $2 == "logs" ]
   then
-    ssh -tt $host "docker logs -f $appname"
+    ssh -tt $HOST "docker logs -f $APPNAME"
 fi
