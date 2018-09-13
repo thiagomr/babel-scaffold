@@ -92,3 +92,8 @@ if [ $2 == "logs" ]
   then
     ssh -tt $HOST "docker logs -f $APPNAME"
 fi
+
+if [ $2 == "env" ]
+  then
+    ssh -tt $HOST "docker exec -it $APPNAME cat .env"
+fi
