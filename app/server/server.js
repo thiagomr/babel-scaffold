@@ -13,4 +13,4 @@ server.use(restify.bodyParser());
 server.use(logRequest);
 
 router(server);
-server.listen(process.env.PORT, () => logger.info(`listen on process at ${process.env.PORT}`));
+server.listen(process.env.PORT, () => logger.info(`server listen at port ${process.env.PORT}`));
