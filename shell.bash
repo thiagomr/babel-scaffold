@@ -5,6 +5,7 @@ echo $1 $2
 run() {
     echo "docker run -it \
         $cond \
+        $volume \
         --name=$APPNAME \
         -p $PORT:$PORT \
         -d \
@@ -15,6 +16,7 @@ if [ $1 == "local" ]
   then
 
     cond="--net='host'"
+    volume="-v ${PWD}/app:/src/app"
 
     export $(egrep -v '^#' .env.dev | xargs)
     cp .env.dev .env
