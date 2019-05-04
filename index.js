@@ -1,3 +1,3 @@
 import 'dotenv/config';
-import '~/mongoose/connection';
+// import '~/mongoose/connection';
 import '~/server/server';

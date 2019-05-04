@@ -1,16 +1,29 @@
 import restify from 'restify';
-import logger from '~/lib/logger';
-import router from '~/server/routes';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
+import router from '~/server/router';
 
-const server = restify.createServer();
+class Server {
+    constructor(app) {
+        this.app = app;
+        this.port = process.env.PORT || 8000;
+        this.middlewares();
+        this.router();
+        this.listen();
+    }
 
-function logRequest(req, res, next) {
-	logger.info(`${req.method} - ${req.url}`);
-	return next();
-};
+    router() {
+		router(this.app);
+    }
 
-server.use(restify.bodyParser());
-server.use(logRequest);
+    middlewares() {
+        this.app.use(morgan('tiny'));
+        this.app.use(bodyParser.json());
+    }
 
-router(server);
-server.listen(process.env.PORT, () => logger.info(`server listen at port ${process.env.PORT}`));
+    listen() {
+        this.app.listen(this.port, () => console.log(`server listen at port ${this.port}`));
+    }
+}
+
+new Server(restify.createServer());
