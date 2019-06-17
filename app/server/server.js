@@ -1,19 +1,14 @@
-import restify from 'restify';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import router from '~/server/router';
+import logger from '~/lib/logger';
+import Router from '~/server/router';
 
 class Server {
     constructor(app) {
         this.app = app;
         this.port = process.env.PORT || 8000;
         this.middlewares();
-        this.router();
-        this.listen();
-    }
-
-    router() {
-		router(this.app);
+        this.router = new Router(app);
     }
 
     middlewares() {
@@ -22,8 +17,8 @@ class Server {
     }
 
     listen() {
-        this.app.listen(this.port, () => console.log(`server listen at port ${this.port}`));
+        this.app.listen(this.port, () => logger.info(`server listen at port ${this.port}`));
     }
 }
 
-new Server(restify.createServer());
+export default Server;
