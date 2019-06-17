@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --forceExit",
     "start": "babel-node index.js",
-    "daemon": "nodemon index.js --exec babel-node"
+    "daemon": "nodemon index.js --exec babel-node",
+    "lint": "eslint app/*"
   },
   "keywords": [
     "babel",
