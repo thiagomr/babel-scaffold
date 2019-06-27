@@ -33,14 +33,16 @@
         "babel-preset-env": "^1.6.1",
         "body-parser": "^1.19.0",
         "dotenv": "^4.0.0",
-        "eslint": "^4.1.1",
-        "husky": "^2.4.1",
-        "lint-staged": "^8.2.1",
         "lodash": "^4.17.4",
         "moment-timezone": "^0.5.14",
         "mongoose": "^5.0.1",
         "morgan": "^1.9.1",
         "restify": "^4.3.1",
         "winston": "^2.3.1"
+    },
+    "devDependencies": {
+        "eslint": "^6.0.1",
+        "husky": "^2.4.1",
+        "lint-staged": "^8.2.1"
     }
 }
