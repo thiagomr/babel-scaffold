@@ -9,6 +9,8 @@ class Server {
         this.port = process.env.PORT || 8000;
         this.middlewares();
         this.router = new Router(app);
+
+
     }
 
     middlewares() {
