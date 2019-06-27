@@ -10,17 +10,6 @@
         "lint": "eslint . --ext .js",
         "lint-fix": "eslint . --ext .js --fix"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "*.js": [
-            "npm run lint",
-            "git add"
-        ]
-    },
     "keywords": [
         "babel",
         "nodejs"
@@ -40,9 +29,5 @@
         "morgan": "^1.9.1",
         "restify": "^4.3.1",
         "winston": "^2.3.1"
-    },
-    "devDependencies": {
-        "husky": "^2.4.1",
-        "lint-staged": "^8.2.1"
     }
 }
