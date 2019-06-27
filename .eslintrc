@@ -26,7 +26,7 @@
         "new-cap": 1,
         "no-extend-native": 2,
         "no-mixed-spaces-and-tabs": 2,
-        "no-trailing-spaces": 2,
+        "no-trailing-spaces": "error",
         "no-unused-vars": 1,
         "no-use-before-define": [2, "nofunc"],
         "object-curly-spacing": [2, "always"],
@@ -37,6 +37,13 @@
         "comma-spacing": ["error", { "before": false, "after": true }],
         "space-infix-ops": "error",
         "space-before-blocks": ["error", "always"],
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                "max": 1,
+                "maxEOF": 1
+            }
+        ],
         "padding-line-between-statements": [
             "error",
             {
