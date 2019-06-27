@@ -10,6 +10,17 @@
         "lint": "eslint . --ext .js",
         "lint-fix": "eslint . --ext .js --fix"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.js": [
+            "npm run lint",
+            "git add"
+        ]
+    },
     "keywords": [
         "babel",
         "nodejs"
@@ -23,6 +34,8 @@
         "body-parser": "^1.19.0",
         "dotenv": "^4.0.0",
         "eslint": "^4.1.1",
+        "husky": "^2.4.1",
+        "lint-staged": "^8.2.1",
         "lodash": "^4.17.4",
         "moment-timezone": "^0.5.14",
         "mongoose": "^5.0.1",
