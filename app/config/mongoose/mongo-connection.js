@@ -11,7 +11,7 @@ class MongoConnection {
             useNewUrlParser: true
         };
 
-        this.mongoose.connection.on('connected', () => logger.log('mongo connected'));
+        this.mongoose.connection.on('connected', () => logger.info('mongo connected'));
         this.mongoose.connection.on('error', () => logger.error('mongo error'));
         this.mongoose.connection.on('disconnected', () => logger.warn('mongo disconnected'));
         this.mongoose.connection.on('reconnectFailed', () => logger.error('mongo failed'));
