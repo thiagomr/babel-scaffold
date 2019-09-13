@@ -6,9 +6,10 @@
     "scripts": {
         "test": "jest --forceExit",
         "start": "babel-node index.js",
-        "daemon": "nodemon index.js --exec babel-node",
+        "start:dev": "nodemon index.js --exec babel-node",
         "lint": "eslint . --ext .js",
-        "lint-fix": "eslint . --ext .js --fix"
+        "lint-fix": "eslint . --ext .js --fix",
+        "doc": "jsdoc -r index.js app README.md -d doc"
     },
     "husky": {
         "hooks": {
@@ -33,6 +34,7 @@
         "babel-preset-env": "^1.6.1",
         "body-parser": "^1.19.0",
         "dotenv": "^4.0.0",
+        "jsdoc": "^3.6.3",
         "lodash": "^4.17.4",
         "moment-timezone": "^0.5.14",
         "mongoose": "^5.0.1",

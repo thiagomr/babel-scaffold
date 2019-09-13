@@ -1,9 +1,17 @@
+/**
+ * @module Server
+ */
+
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import logger from '~/lib/logger';
 import Router from '~/server/router';
 
 class Server {
+    /**
+     * Sets port, middlewares and router config
+     * @param {Restify} app
+     */
     constructor(app) {
         this.app = app;
         this.port = process.env.PORT || 8000;
@@ -16,6 +24,9 @@ class Server {
         this.app.use(bodyParser.json());
     }
 
+    /**
+     * Listen server at default port
+     */
     listen() {
         this.app.listen(this.port, () => logger.info(`server listen at port ${this.port}`));
     }

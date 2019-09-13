@@ -1,7 +1,15 @@
+/**
+ * @module Mongo
+ */
+
 import mongoose from 'mongoose';
 import logger from '~/lib/logger';
 
 class Mongo {
+    /**
+     * Set initial options and handle connection events
+     * @param {string} url
+     */
     constructor(url) {
         this.url = url;
         this.options = {
@@ -17,10 +25,16 @@ class Mongo {
         mongoose.connection.on('reconnectFailed', () => logger.error('mongo failed'));
     }
 
+    /**
+     * Starts mongo connection with constructor options
+     */
     async connect() {
         await mongoose.connect(this.url, this.options);
     }
 
+    /**
+     * Finish mongo connection
+     */
     async disconnect() {
         await mongoose.disconnect();
     }
