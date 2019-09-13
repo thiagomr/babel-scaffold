@@ -9,7 +9,7 @@ import Router from '~/server/router';
 
 class Server {
     /**
-     * Sets port, middlewares and router config
+     * Sets port, starts middlewares and router
      * @param {Restify} app
      */
     constructor(app) {
@@ -19,13 +19,16 @@ class Server {
         this.router = new Router(app);
     }
 
+    /**
+     * Defines app midlewares
+     */
     middlewares() {
         this.app.use(morgan('tiny'));
         this.app.use(bodyParser.json());
     }
 
     /**
-     * Listen server at default port
+     * Serves app at default port
      */
     listen() {
         this.app.listen(this.port, () => logger.info(`server listen at port ${this.port}`));

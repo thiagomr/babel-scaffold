@@ -1,7 +1,6 @@
 /**
  * @module App
 */
-
 import 'dotenv/config';
 import restify from 'restify';
 import Mongo from '~/config/mongo';
