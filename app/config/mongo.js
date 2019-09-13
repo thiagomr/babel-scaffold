@@ -7,7 +7,8 @@ class Mongo {
         this.options = {
             reconnectTries: 5,
             reconnectInterval: 2000,
-            useNewUrlParser: true
+            useNewUrlParser: true,
+            useUnifiedTopology: true
         };
 
         mongoose.connection.on('connected', () => logger.info('mongo connected'));
